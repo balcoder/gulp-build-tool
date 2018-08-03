@@ -86,3 +86,6 @@ run tasks sass and browserSync first and then the watch task
 
 for production run tasks clean:dist, sass, in sequence first and then run useref
 , images and fonts tasks together
+
+## Credit
+Thanks to  ZELL LIEW for his blog post on [gulp for beginners](https://css-tricks.com/gulp-for-beginners/)
