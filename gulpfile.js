@@ -102,6 +102,7 @@ gulp.task('build', function(callback) {
   runSequence(
     'clean:dist', // these are run in sequence
     'sass',
+    'autoprefixer',
     ['useref', 'images', 'fonts'], // these are run together
     callback
   )

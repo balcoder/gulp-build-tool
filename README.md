@@ -84,7 +84,7 @@ run tasks sass and browserSync first and then the watch task
 
 ### `gulp build`
 
-for production run tasks clean:dist, sass, in sequence first and then run useref
+for production run tasks clean:dist, sass and autoprefixer in sequence first and then run useref
 , images and fonts tasks together
 
 ## Credit
