@@ -2,13 +2,13 @@
 
 A collection of packages that build a website using `npm and gulp scripts`.
 
-* [NPM Packages used](#Packages-used)
-* [Running tasks individually](#Running-tasks-individually)
-* [Development](#Development)
-* [Production](#Production)
+* [NPM Packages used](#packages-used)
+* [Running tasks individually](#running-tasks-individually)
+* [Development](#development)
+* [Production](#production)
 * [Using in your project](#using-in-your-project)
 * [List of available tasks](#list-of-available-tasks)
-* [Need help?](#need-help)
+
 
 ## Packages used  
   * [autoprefixer](https://github.com/postcss/autoprefixer)
@@ -56,12 +56,7 @@ html and js files and relaods the browser.
 minifies and concatenates js files stated in app/index.html starting from `<!--build:js js/main.min.js -->`and ending in `<!-- endbuild -->` with all files
 in between getting minified and concatenated into js/main.min.js
 
-`<!--build:js js/main.min.js -->
-<script src="js/main.js"></script>
-<script src="js/sub.js"></script>
-<!-- endbuild -->`
-
- also minifies and concatenates css files stated in app/index.html starting from `<!--build:css css/css.min.css -->` and ending in ` <!-- endbuild -->` with all files in between getting minified and concatenated into css/css.min.js
+ It also minifies and concatenates css files stated in app/index.html starting from `<!--build:css css/css.min.css -->` and ending in ` <!-- endbuild -->` with all files in between getting minified and concatenated into css/css.min.js
 
 ### `gulp autoprefixer`
 
