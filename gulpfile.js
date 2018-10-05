@@ -16,6 +16,8 @@ var autoprefixer = require('autoprefixer');
 
 // Dev Tools
 // -----------------
+//Watch for changes in app/scss folder and convert to css, also watch for
+// changes to html or JavaScript in the app folder and reload with browserSync
 
 // Start browserSync server
 gulp.task('browserSync', function() {
