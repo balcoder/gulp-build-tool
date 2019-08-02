@@ -12,6 +12,7 @@ var runSequence = require('run-sequence');
 var postcss = require('gulp-postcss');
 var sourcermaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
+const { series, parallel } = require('gulp');
 
 
 // Dev Tools
@@ -94,18 +95,27 @@ gulp.task('clean:dist', function() {
 // Build Sequences
 // ---------------
 
-gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
-    callback
-  )
-})
+// gulp.task('default', function(callback) {
+//   runSequence(['sass', 'browserSync'], 'watch',
+//     callback
+//   )
+// })
 
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean:dist', // these are run in sequence
-    'sass',
-    'autoprefixer',
-    ['useref', 'images', 'fonts'], // these are run together
-    callback
-  )
-})
+gulp.task('default', series(parallel('sass', 'browserSync'), 'watch' ));
+
+// gulp.task('build', function(callback) {
+//   runSequence(
+//     'clean:dist', // these are run in sequence
+//     'sass',
+//     'autoprefixer',
+//     ['useref', 'images', 'fonts'], // these are run together
+//     callback
+//   )
+// })
+
+gulp.task('build', series(
+  'clean:dist',
+  'sass',
+  'autoprefixer',
+  parallel('useref','images','fonts')
+))
