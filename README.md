@@ -1,4 +1,5 @@
 # Gulp Build Tool
+### Updated to gulp4 23/12/2019
 
 A collection of packages that build a website using `npm and gulp scripts`.
 
@@ -17,6 +18,7 @@ A collection of packages that build a website using `npm and gulp scripts`.
   * [gulp-if](https://github.com/robrich/gulp-if)
   * [gulp-postcss](https://github.com/postcss/gulp-postcss)
   * [gulp-sass](https://github.com/dlmanning/gulp-sass)
+  * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin)
   * [gulp-sourcemaps](https://github.com/gulp-sourcemaps/gulp-sourcemaps)
   * [gulp-uglify](https://github.com/terinjokes/gulp-uglify)
   * [gulp-useref](https://github.com/jonkemp/gulp-useref)
