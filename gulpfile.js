@@ -4,7 +4,7 @@ var browserSync = require('browser-sync');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
-var cssnano = require('gulp-cssnano');
+var minifyCss = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
@@ -40,7 +40,7 @@ gulp.task('sass', function() {
 
 // Watchers
 gulp.task('watch', function() {
-  gulp.watch('app/scss/**/*.scss', ['sass']);
+  gulp.watch('app/scss/**/*.scss', gulp.series('sass'));
   gulp.watch('app/*.html', browserSync.reload);
   gulp.watch('app/js/**/*.js', browserSync.reload);
 })
@@ -54,14 +54,14 @@ gulp.task('useref', function() {
   return gulp.src('app/*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulpIf('*.css', cssnano()))
+    .pipe(gulpIf('*.css', minifyCss()))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('autoprefixer', function() {
   return gulp.src('app/css/*.css')
     .pipe(sourcermaps.init())
-    .pipe(postcss([autoprefixer({ grid: true, browsers: ['>1%'] })]))
+    .pipe(postcss([autoprefixer()]))
     .pipe(sourcermaps.write('.'))
     .pipe(gulp.dest('dist/css'))
 });
@@ -79,43 +79,23 @@ gulp.task('images', function() {
 gulp.task('fonts', function() {
   return gulp.src('app/fonts/**/*')
     .pipe(gulp.dest('dist/fonts'))
-})
+});
 
-// Cleaning
-gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
-    return cache.clearAll(cb);
-  });
-})
 
-gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+gulp.task('clean:dist', function(cb) {
+   del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+   cb();
 });
 
 // Build Sequences
 // ---------------
 
-// gulp.task('default', function(callback) {
-//   runSequence(['sass', 'browserSync'], 'watch',
-//     callback
-//   )
-// })
-
 gulp.task('default', series(parallel('sass', 'browserSync'), 'watch' ));
 
-// gulp.task('build', function(callback) {
-//   runSequence(
-//     'clean:dist', // these are run in sequence
-//     'sass',
-//     'autoprefixer',
-//     ['useref', 'images', 'fonts'], // these are run together
-//     callback
-//   )
-// })
 
 gulp.task('build', series(
   'clean:dist',
   'sass',
   'autoprefixer',
   parallel('useref','images','fonts')
-))
+));
