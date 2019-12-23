@@ -83,6 +83,7 @@ gulp.task('fonts', function() {
 
 gulp.task('clean:dist', function(cb) {
    del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+   cache.clearAll();
    cb();
 });
 
