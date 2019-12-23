@@ -1,23 +1,16 @@
+/* Some dummy starter css which should get some prefixes
+/  when autoprefixer is run */
 .testing {
   width: 14.28571%; }
 
 body {
   background-color: #232830;
-  color: white; }
+  color: white;
+  display: flex;
+  justify-content: center; }
 
-.grid {
-  display: grid;
-  grid-gap: 10px;
-  grid-template: "a   b" 100px "c   d" 100px / 1fr  1fr; }
-
-.cell-A {
-  grid-area: a; }
-
-.cell-B {
-  grid-area: b; }
-
-.cell-C {
-  grid-area: c; }
-
-.cell-D {
-  grid-area: d; }
+@keyframes slidein {
+  from {
+    transform: translateX(0%); }
+  to {
+    transform: translateX(100%); } }

@@ -8,7 +8,6 @@ var minifyCss = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
-var runSequence = require('run-sequence');
 var postcss = require('gulp-postcss');
 var sourcermaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
@@ -90,7 +89,8 @@ gulp.task('clean:dist', function(cb) {
 // Build Sequences
 // ---------------
 
-gulp.task('default', series(parallel('sass', 'browserSync'), 'watch' ));
+//gulp.task('default', series( parallel('sass', 'browserSync')), 'watch');
+gulp.task('default', parallel('watch', series('sass','browserSync')));
 
 
 gulp.task('build', series(
