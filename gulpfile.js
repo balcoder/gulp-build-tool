@@ -38,10 +38,17 @@ gulp.task('sass', function() {
 })
 
 // Watchers
-gulp.task('watch', function() {
-  gulp.watch('app/scss/**/*.scss', gulp.series('sass'));
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/js/**/*.js', browserSync.reload);
+gulp.task('watch', function(done) {
+    gulp.watch('app/scss/**/*.scss', gulp.series('sass'));
+    gulp.watch('app/*.html', function(done) {
+      browserSync.reload();
+      done();
+    });
+    gulp.watch('app/js/**/*.js', function(done) {
+      browserSync.reload();
+      done();
+    });
+    done();
 })
 
 // Production Tools
