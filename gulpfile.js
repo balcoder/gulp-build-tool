@@ -11,6 +11,7 @@ var del = require('del');
 var postcss = require('gulp-postcss');
 var sourcermaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
+const babel = require('gulp-babel');
 const { series, parallel } = require('gulp');
 
 
@@ -59,6 +60,7 @@ gulp.task('useref', function() {
 
   return gulp.src('app/*.html')
     .pipe(useref())
+    .pipe(gulpIf('*.js', babel()))
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', minifyCss()))
     .pipe(gulp.dest('dist'));
@@ -87,7 +89,7 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('dist/fonts'))
 });
 
-
+// Cleaning up
 gulp.task('clean:dist', function(cb) {
    del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
    cache.clearAll();
